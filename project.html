@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JACK_AI Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  background:#000;
+  color:#00f5ff;
+  font-family:'Share Tech Mono',monospace;
+  overflow-x:hidden;
+}
+
+/* ===== BACKGROUND SYSTEM ===== */
+.bg{
+  position:fixed;
+  width:100%;height:100%;top:0;left:0;
+  z-index:-5;
+  background:radial-gradient(circle at center,#050510 0%,#000 60%);
+}
+
+.grid{
+  position:absolute;width:100%;height:100%;
+  background-image:
+  linear-gradient(rgba(0,255,255,0.08) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(0,255,255,0.08) 1px, transparent 1px);
+  background-size:50px 50px;
+  animation:gridMove 20s linear infinite;
+}
+
+@keyframes gridMove{from{transform:translateY(0)}to{transform:translateY(50px)}}
+
+.glow{
+  position:absolute;width:600px;height:600px;
+  background:#00f5ff;border-radius:50%;
+  filter:blur(200px);opacity:.15;
+  top:20%;left:30%;animation:float 15s ease-in-out infinite alternate;
+}
+
+@keyframes float{0%{transform:translate(0,0)}100%{transform:translate(200px,-150px)}}
+
+/* scanlines */
+.scan{
+  position:fixed;width:100%;height:100%;
+  background:linear-gradient(rgba(255,255,255,0.03) 50%, transparent 50%);
+  background-size:100% 4px;
+  z-index:-4;
+  pointer-events:none;
+}
+
+/* ===== BOOT SCREEN ===== */
+.boot{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;font-family:'Orbitron',sans-serif}
+
+.boot h1{font-size:42px;letter-spacing:4px}
+
+.loading{margin-top:30px;width:320px;height:6px;background:#002;overflow:hidden;border-radius:10px}
+
+.loading div{height:100%;width:0%;background:#00f5ff;animation:load 3s forwards}
+
+@keyframes load{from{width:0%}to{width:100%}}
+
+/* ===== MAIN ===== */
+.section{padding:120px 10%}
+
+.title{font-family:'Orbitron',sans-serif;font-size:50px;margin-bottom:30px}
+
+.typing{font-size:22px;white-space:nowrap;overflow:hidden;border-right:3px solid #00f5ff;width:0;animation:typing 4s steps(40,end) forwards, blink .8s infinite}
+
+@keyframes typing{from{width:0}to{width:100%}}
+@keyframes blink{50%{border-color:transparent}}
+
+/* ===== CARDS ===== */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px}
+
+.card{padding:30px;border:1px solid rgba(0,255,255,0.3);background:rgba(0,255,255,0.05);backdrop-filter:blur(10px);transition:.4s;position:relative}
+
+.card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg,transparent,rgba(0,255,255,.4),transparent);
+  opacity:0;
+  transition:.4s;
+}
+
+.card:hover::before{opacity:1}
+
+.card:hover{transform:translateY(-10px) scale(1.02);box-shadow:0 0 40px #00f5ff}
+
+.bar{margin-top:15px;height:8px;background:#002;overflow:hidden}
+.bar div{height:100%;background:#00f5ff;animation:loadBar 2s forwards}
+
+@keyframes loadBar{from{width:0}}
+
+/* ===== TERMINAL CONTACT ===== */
+.terminal{
+  border:1px solid rgba(0,255,255,.4);
+  padding:30px;
+  background:rgba(0,0,0,.7);
+  font-size:18px;
+  line-height:1.8;
+  box-shadow:0 0 30px rgba(0,255,255,.3);
+}
+
+.cursor{display:inline-block;width:10px;height:20px;background:#00f5ff;margin-left:5px;animation:blink .8s infinite}
+
+footer{text-align:center;padding:40px;border-top:1px solid rgba(0,255,255,0.2);margin-top:80px}
+
+</style>
+</head>
+
+<body>
+
+<div class="bg">
+  <div class="grid"></div>
+  <div class="glow"></div>
+</div>
+<div class="scan"></div>
+
+<!-- BOOT -->
+<section class="boot">
+  <h1>INITIALIZING JACK_AI...</h1>
+  <div class="loading"><div></div></div>
+</section>
+
+<!-- INTRO -->
+<section class="section">
+  <div class="title">SYSTEM MESSAGE</div>
+  <div class="typing">Hello. I am Jack. Python Systems Developer. AI Path Active.</div>
+</section>
+
+<!-- SKILLS -->
+<section class="section">
+  <div class="title">SKILL MODULES</div>
+  <div class="cards">
+    <div class="card">
+      <h3>Python</h3>
+      <div class="bar"><div style="width:92%"></div></div>
+    </div>
+    <div class="card">
+      <h3>Backend Engineering</h3>
+      <div class="bar"><div style="width:75%"></div></div>
+    </div>
+    <div class="card">
+      <h3>HTML / CSS</h3>
+      <div class="bar"><div style="width:88%"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section">
+  <div class="title">PROJECT MODULES</div>
+  <div class="cards">
+    <div class="card">
+      <h3>Automation Engine</h3>
+      <p>Advanced productivity automation systems.</p>
+    </div>
+    <div class="card">
+      <h3>Portfolio AI Interface</h3>
+      <p>CSS powered AI-style developer interface.</p>
+    </div>
+    <div class="card">
+      <h3>AI Learning Path</h3>
+      <p>Machine learning & intelligent backend systems.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT TERMINAL -->
+<section class="section">
+  <div class="title">CONTACT TERMINAL</div>
+  <div class="terminal">
+    > establish_connection Jack_AI<br>
+    > status: online<br>
+    > send_message:<br>
+    waiting for input<span class="cursor"></span>
+  </div>
+</section>
+
+<footer>
+  JACK_AI © 2026 • Ultra Advanced Portfolio Interface
+</footer>
+
+</body>
+</html>
